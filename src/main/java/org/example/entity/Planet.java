@@ -1,6 +1,9 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "planet")
 public class Planet {
@@ -9,13 +12,11 @@ public class Planet {
     @Column(name = "name")
     private String name;
 
-    public Planet() {
-    }
+    @OneToMany(mappedBy = "fromPlanet", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Ticket> depart = new ArrayList<>();
 
-    public Planet(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "toPlanet", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Ticket> destination = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -31,6 +32,25 @@ public class Planet {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Ticket> getDepart() {
+        return depart;
+    }
+
+    public void setDepart(List<Ticket> depart) {
+        this.depart = depart;
+    }
+
+    public List<Ticket> getDestination() {
+        return destination;
+    }
+
+    public void setDestination(List<Ticket> destination) {
+        this.destination = destination;
+    }
+
+    public Planet() {
     }
 
     @Override

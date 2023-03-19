@@ -10,10 +10,10 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
     // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
-    implementation 'org.flywaydb:flyway-core:9.15.2'
+    implementation 'org.flywaydb:flyway-core:9.16.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
     compileOnly 'org.projectlombok:lombok:1.18.26'
     // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core

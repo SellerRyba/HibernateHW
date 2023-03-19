@@ -1,7 +1,6 @@
 package org.example.crud;
 
 
-import org.example.entity.Client;
 import org.example.entity.Planet;
 import org.example.utils.HibernateUtil;
 import org.hibernate.Session;
@@ -9,13 +8,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class PlanetCrudService {
-    public void create(Planet planet) {
+    public String create(Planet planet) {
         SessionFactory sessionFactory = HibernateUtil.getInstance();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(planet);
         transaction.commit();
         session.close();
+        return planet.getId();
     }
 
     public Planet getById(String id) {

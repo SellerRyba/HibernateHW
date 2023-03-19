@@ -7,13 +7,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class ClientCrudService {
-    public void create(Client client) {
+    public int create(Client client) {
         SessionFactory sessionFactory = HibernateUtil.getInstance();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(client);
         transaction.commit();
         session.close();
+        return client.getId();
     }
 
     public Client getById(int id) {
