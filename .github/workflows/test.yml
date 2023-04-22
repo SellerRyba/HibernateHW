@@ -1,27 +1,28 @@
-name: Java CI
+name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
-      
-    - name: Set up Java
+
+    - name: Set up JDK
       uses: actions/setup-java@v2
       with:
         java-version: 11
-        distribution: "adopt@1.11"
-        
-    - name: Grant execute permission for Gradle wrapper
-      run: chmod +x gradlew
-      
-    - name: Run tests
+        distribution: adopt
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Run unit tests
       run: ./gradlew test
